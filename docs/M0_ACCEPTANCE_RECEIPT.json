@@ -19,7 +19,7 @@
   "dualDeviceLinuxValidate": "PASS",
   "dualDevicePagesDeploy": "PASS",
   "pagesUrl": "https://rick-oster.github.io/gran-santiago-map/",
-  "windowsLocalCheckout": "F:\\Projects\\GranSantiagoMap",
+  "windowsLocalCheckout": "F:\\Projects\\GranSantiago",
   "windowsLocalResults": {
     "npmCi": "PASS",
     "static": "PASS",

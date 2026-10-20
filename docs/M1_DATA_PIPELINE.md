@@ -4,7 +4,7 @@ The V1 specification remains frozen. This package adds a **real offline DPA sour
 
 ## Windows 11 — development without elevated privileges
 
-Use an ordinary PowerShell 7 terminal in `F:\Projects\GranSantiagoMap`:
+Use an ordinary PowerShell 7 terminal in `F:\Projects\GranSantiago`:
 
 ```powershell
 py -3 -m venv .venv-m1
