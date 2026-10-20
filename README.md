@@ -9,10 +9,10 @@
 
 ## Windows quick start
 
-The established checkout is `F:\Projects\GranSantiagoMap`. From PowerShell:
+The established checkout is `F:\Projects\GranSantiago`. From PowerShell:
 
 ```powershell
-Set-Location 'F:\Projects\GranSantiagoMap'
+Set-Location 'F:\Projects\GranSantiago'
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File '.\scripts\Windows-Dev.ps1' -Action Setup
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File '.\scripts\Windows-Dev.ps1' -Action Serve
 ```

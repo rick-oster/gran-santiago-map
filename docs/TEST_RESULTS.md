@@ -1,22 +1,17 @@
-# Test results and evidence ledger
+# Test results — Gran Santiago Map V1
 
-Updated 2026-10-20. The engineering specification is unchanged.
+## M0 final acceptance — PASS
 
-## Previously observed tests
+- Windows R4 bootstrap source, TypeScript and build PASS; Vitest 2/2 PASS.
+- [CI run 39346060295](https://github.com/rick-oster/gran-santiago-map/actions/runs/39346060295): Linux validate + Pages deployment PASS.
+- [Android marker PR #1](https://github.com/rick-oster/gran-santiago-map/pull/1): merge `c659eb00c4042590d9a9708b4655203c016417ec`; [CI run 39350409721](https://github.com/rick-oster/gran-santiago-map/actions/runs/39350409721): Linux validate + deploy PASS.
+- [Dual-device PR #2](https://github.com/rick-oster/gran-santiago-map/pull/2): merge `7e6bdfe7d2ca4b9a6d7c329428cd934d2862af70`; [CI run 39356252271](https://github.com/rick-oster/gran-santiago-map/actions/runs/39356252271): Windows smoke, Linux validate/Playwright and Pages deployment all PASS.
+- Windows 11 after merge: `npm ci`, source checks, TypeScript, 2/2 Vitest, Vite build and `WINDOWS_LOCAL_VERIFY=PASS` (user-provided console output).
+- Android device authoring and seeing deployment: explicit user attestation; no independent physical-device recording. Device test accepted on this declared basis.
 
-- Windows R4 bootstrap reused pushed commit `5c9fc9831580f48ced91cc0b9af861c0f93b335f` without new push; Node/npm install, `check:static`, TypeScript, Vitest 2/2 and Vite production build passed.
-- GitHub Actions run [39346060295](https://github.com/rick-oster/gran-santiago-map/actions/runs/39346060295): `validate` and `deploy` passed; CI artifacts downloaded on Windows and deployed Pages HTTP/JS marker check passed.
-- [PR #1](https://github.com/rick-oster/gran-santiago-map/pull/1) merged marker change; new `main` commit `c659eb00c4042590d9a9708b4655203c016417ec`.
-- GitHub Actions [run 39350409721](https://github.com/rick-oster/gran-santiago-map/actions/runs/39350409721): `validate` and `deploy / publish` passed; all reported CI steps (including desktop/mobile-emulated Playwright) succeeded and CI evidence artifact exists.
-- `M0-ANDROID-001` appears in committed source. Actual Android device of PR authoring and visual observation of Pages remain **unconfirmed by an independent physical-device receipt**.
+## M1 first-stage pipeline — local synthetic tests
 
-## New proposed dual-device workflow checks
-
-- Local source static checks (YAML structure/links and package integration): **to be executed by installer preflight**.
-- Windows runner PowerShell AST, frozen-spec fingerprint, `Windows-Dev.ps1 -Action Status` and `-Action Check`: **PENDING remote CI**.
-- Existing Linux `validate` after Windows dependency: **PENDING remote CI**.
-- Windows physical script use and Android-only edit flow: **PENDING actual-device evidence**.
-
-## Acceptance and evidence
-
-The hosted CI attaches `m0-ci-evidence-<run_id>` JSON/test diagnostics. CI jobs cannot prove physical-phone interaction, source of input device, or whether the user saw a fresh deployed marker. The M0 receipt retains `m0GatePassed=false` until all required evidence is available. Do not advance to M1 until M0 is accepted.
+- Six offline contract tests: **6/6 PASS** in the preparation environment, including geographic name normalizing, 52-name/34-preset shape, rejecting duplicate/invented IDs, rejecting incomplete regional datasets, shared-boundary adjacency, and geometry count fingerprints.
+- Actual DPA 2023 integration: **NOT RUN**; authoritative polygon archive/schema/license still pending.
+- Production GeoJSON and adjacency graph: **NOT RELEASED**; any generated candidate remains staged and excluded from Git.
+- M1 milestone gate: **NOT PASSED**.

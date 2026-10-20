@@ -4,10 +4,10 @@
 
 ## Windows 11
 
-The established checkout is `F:\Projects\GranSantiagoMap`. PowerShell 7 is recommended; the development script is compatible with Windows PowerShell 5.1.
+The established checkout is `F:\Projects\GranSantiago`. PowerShell 7 is recommended; the development script is compatible with Windows PowerShell 5.1.
 
 ```powershell
-Set-Location 'F:\Projects\GranSantiagoMap'
+Set-Location 'F:\Projects\GranSantiago'
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File '.\scripts\Windows-Dev.ps1' -Action Setup
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File '.\scripts\Windows-Dev.ps1' -Action NewBranch -BranchName 'feature/my-change'
 ```
