@@ -1,36 +1,37 @@
 # Development status — Gran Santiago Map V1
 
-Updated: 2026-10-19. Spec version: 1.0 (frozen).
+Updated 2026-10-20; frozen spec 1.0, SHA-256 `eec81bb8e7ffa8af5522fd26b37b1cfd47b9cda0ec5095ebe4da8d55e93feddd`.
 
-## Completed in delivered starter (source only)
+## Confirmed completed M0 infrastructure
 
-- Initial React + TypeScript + Vite project files and responsive honest M0 placeholder.
-- Leaflet included as locked **direct dependency version**; map rendering deliberately not implemented before M1 validation.
-- Vitest unit contract; Playwright Chromium desktop and mobile-emulation tests.
-- GitHub Actions automatic CI, Pages deployment using a reusable workflow, downloadable JSON evidence receipt.
-- Android-only bootstrap documentation, Node 22 Codespaces devcontainer, exact commands, build-marker acceptance mechanism.
-- Frozen specification copied without changing design decisions, source and acceptance docs.
-- Structural static check executable directly with Node.js; local syntax/structure checks PASSED, receipt in docs/LOCAL_PRECHECK_RECEIPT.json.
+- Public repository `rick-oster/gran-santiago-map` created; protected `main` requires `validate`.
+- GitHub Pages uses Actions; initial Windows bootstrap and frozen-spec check passed, with Node 24.12.0 on the user's Windows machine.
+- Initial Windows static source check, TypeScript, 2 Vitest tests and production build all passed.
+- First GitHub CI and Pages deployment confirmed passed on Windows bootstrap.
+- A follow-up GitHub PR #1 changed the marker in `src/app/build-label.ts` to `M0-ANDROID-001`; merge commit `c659eb00c4042590d9a9708b4655203c016417ec`, CI run `39350409721`, `validate` and `deploy` successful.
 
-## Not verified/accepted
+## Dual-device workflow change in progress
 
-- Package install, actual TypeScript build, unit/e2e execution (artifact runtime cannot access npm registry).
-- GitHub repository creation, branch checks, Pages settings, online HTTPS deployment.
-- Android-only edit/commit/push, observation of CI run/deployed updated marker on phone.
+- `scripts/Windows-Dev.ps1`: safe Windows setup, checks, local server, fast-forward sync, feature branch creation.
+- `scripts/Test-WindowsDev.ps1`: PowerShell syntax, safe Git contract and frozen-spec fingerprint checks.
+- `windows-smoke` CI job; Linux `validate` depends on its success; existing protected check name `validate` retained.
+- Android normal GitHub web editor path documented, avoiding the previously blocked Visual-Studio-Code OAuth screen. Codespaces is optional.
 
-## Pending in order
+**This package is a proposed PR change, not yet a successful remote CI result.** Do not mark its checks passed until the GitHub Actions job succeeds after publishing.
 
-1. **M0:** User creates public GitHub repository (if public hosting acceptable), uploads ZIP in Android Codespaces, runs bootstrap, commits/pushes, enables Pages/branch checks.
-2. **M0:** CI and Pages receipts must be inspected; Android edits BUILD_MARKER, pushes, confirms deployed new marker.
-3. **M1:** Acquire/validate official 52-comuna source, licensing, official 34 preset identities, topology, versioned static geometry and adjacency. Do not start until M0 accepted.
-4. M2–M6: implement sequentially against the frozen spec; mark each PASS only with evidence.
+## Acceptance blockers
 
-## Engineering decisions
+1. Verify Android PR #1 truly originated from the Android device, without Windows assistance, and the user observed `M0-ANDROID-001` on Pages from the phone.
+2. Push/merge dual-device workflow change after `windows-smoke` and `validate` succeed.
+3. Verify Windows script on the user's machine; record evidence in M0 receipt, test ledger and development status. M0 remains **NOT YET ACCEPTED** until all required evidence exists.
 
-- No placeholder comuna IDs, approximated polygon outlines, tiles, or network map providers.
-- Pages deploy happens only on `main` after the entire CI `validate` job succeeds.
-- PR CI runs but cannot publish/overwrite the production Pages site.
-- On free accounts, GitHub Pages requires public source; do not publish privately owned code without a conscious user choice.
-- Dependency versions are exact direct versions and a transitive lockfile must be generated/committed during first Codespaces bootstrap.
-- Android phone physical smoke check is independent of Playwright mobile emulation.
-- PWA offline/manifest/service-worker work is M5, not misrepresented as implemented at M0.
+## Next milestones — still blocked
+
+- **M1** authoritative official 52-comuna boundaries, provenance/permission, IDs, integrity, adjacency, 34 preset.
+- **M2** real map and camera.
+- **M3** vivid adjacency-aware colors and permanent labels.
+- **M4** search, selection, custom visibility and color controls.
+- **M5** offline PWA install/resilience.
+- **M6** release acceptance.
+
+No M1 geometry or later application functionality is claimed as implemented.
