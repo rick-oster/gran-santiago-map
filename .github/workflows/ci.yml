@@ -13,58 +13,67 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  windows_smoke:
+    name: windows-smoke
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify PowerShell entrypoint and frozen spec
+        shell: pwsh
+        run: ./scripts/Test-WindowsDev.ps1
+      - name: Verify Windows Git status entrypoint
+        shell: pwsh
+        run: ./scripts/Windows-Dev.ps1 -Action Status
+      - name: Install locked dependencies
+        shell: pwsh
+        run: npm ci --no-audit --no-fund
+      - name: Verify Windows build and unit tests
+        shell: pwsh
+        run: ./scripts/Windows-Dev.ps1 -Action Check
+
   validate:
     name: validate
+    needs: windows_smoke
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-
       - name: Install npm dependencies
         id: install
-        run: |
-          if [[ -f package-lock.json ]]; then
-            npm ci --no-audit --no-fund
-          else
-            echo 'WARNING: lockfile not present; the Android bootstrap must commit one.'
-            npm install --no-audit --no-fund
-          fi
-
+        run: npm ci --no-audit --no-fund
       - name: Verify frozen spec and repository layout
         id: static
         run: npm run check:static
-
       - name: TypeScript typecheck
         id: typecheck
         run: npm run typecheck
-
       - name: Prepare evidence directory
         run: mkdir -p evidence
-
       - name: Unit tests
         id: unit
         run: npm run test:unit:ci
-
       - name: Build production site
         id: build
         env:
           GITHUB_PAGES_BASE: /${{ github.event.repository.name }}/
         run: npm run build
-
       - name: Install Playwright Chromium
         id: browser_setup
         run: npx playwright install --with-deps chromium
-
       - name: Desktop and mobile-emulated end-to-end tests
         id: e2e
         run: npm run test:e2e
-
       - name: Write machine-readable CI receipt
         if: always()
         env:
@@ -76,7 +85,6 @@ jobs:
           M0_BROWSER_SETUP: ${{ steps.browser_setup.outcome }}
           M0_E2E: ${{ steps.e2e.outcome }}
         run: node scripts/write-ci-receipt.mjs
-
       - name: Upload CI test receipts and diagnostics
         if: always()
         uses: actions/upload-artifact@v4
@@ -88,7 +96,6 @@ jobs:
             test-results/
           if-no-files-found: warn
           retention-days: 14
-
       - name: Package site for GitHub Pages
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v4
