@@ -1,0 +1,8 @@
+{
+  "name": "Gran Santiago Map V1",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+  "forwardPorts": [5173],
+  "portsAttributes": {
+    "5173": { "label": "Vite development preview", "onAutoForward": "notify" }
+  }
+}

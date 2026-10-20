@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "milestone": "M0",
+  "createdDate": "2026-10-19",
+  "scope": "offline artifact source-level verification, not full dependency build or GitHub/Android gate",
+  "projectFileCount": 39,
+  "checks": {
+    "node-static-contract": {
+      "passed": true,
+      "exitCode": 0,
+      "output": "{\n  \"milestone\": \"M0\",\n  \"check\": \"static-source-contract\",\n  \"passed\": true,\n  \"requiredFileCount\": 12,\n  \"failures\": []\n}\n"
+    },
+    "syntax-scripts/check-m0.mjs": {
+      "passed": true,
+      "exitCode": 0,
+      "output": ""
+    },
+    "syntax-scripts/write-ci-receipt.mjs": {
+      "passed": true,
+      "exitCode": 0,
+      "output": ""
+    },
+    "syntax-phone-bootstrap": {
+      "passed": true,
+      "exitCode": 0,
+      "output": ""
+    },
+    "typescript-syntax-parse": {
+      "passed": true,
+      "exitCode": 0,
+      "output": "{\"files\":8,\"syntaxErrors\":[]}\n"
+    },
+    "json-valid": {
+      "passed": true,
+      "fileCount": 8
+    },
+    "yaml-deploy.yml": {
+      "passed": true,
+      "jobs": [
+        "publish"
+      ]
+    },
+    "yaml-ci.yml": {
+      "passed": true,
+      "jobs": [
+        "validate",
+        "deploy"
+      ]
+    },
+    "frozen-spec-identical": {
+      "passed": true,
+      "sha256": "eec81bb8e7ffa8af5522fd26b37b1cfd47b9cda0ec5095ebe4da8d55e93feddd",
+      "bytes": 19708
+    },
+    "no-fake-geojson": {
+      "passed": true
+    },
+    "ci-sequencing-source-contract": {
+      "passed": true
+    }
+  },
+  "allLocalPrechecksPassed": true,
+  "npmBuildExecuted": false,
+  "remoteCiObserved": false,
+  "androidOnlyGatePassed": false,
+  "blockingReason": "The sandbox cannot resolve registry.npmjs.org. npm install, bundling, test runners and Android deployment require Codespaces/GitHub."
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Gran Santiago Map">
+  <rect width="64" height="64" rx="15" fill="#e4e7ff" />
+  <path d="M23 11 49 23 40 53 13 39z" fill="#5265ea" stroke="#303d94" stroke-width="3" stroke-linejoin="round" />
+  <path d="m23 11-4 29m30-17L19 40m21 13-7-24" fill="none" stroke="#f5f6f8" stroke-width="2" opacity=".8" />
+</svg>

@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "milestone": "M0",
+  "specVersion": "1.0",
+  "repoUrl": null,
+  "phoneCommitSha": null,
+  "ciRunUrl": null,
+  "ciResult": "NOT_RUN",
+  "pagesDeploymentUrl": null,
+  "markerSeenAfterPhoneCommit": null,
+  "androidPhoneOnlyVerification": "NOT_RUN",
+  "branchProtectionVerified": false,
+  "lockfileCommitted": false,
+  "m0GatePassed": false,
+  "notes": "Populate from actual GitHub CI/Pages evidence and physical Android observations only."
+}
